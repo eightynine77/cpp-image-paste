@@ -1,13 +1,13 @@
-# C image paste
-useful and simple C program to paste image from clipboard into a file.
+# C++ image paste
+useful and simple C++ program to paste image from clipboard into a file.
 
 # how to use
-simply run c-image-paste.exe on cmd and it will paste your image to the %temp% folder.  
+simply run cpp-image-paste.exe on cmd and it will paste your image to the %temp% folder.  
 the program will output the exact directory of the pasted image.  
 for example, if you have copied an image and you run the program on cmd, the program will output ```C:\Users\<username>\AppData\Local\Temp\cbBA87.png```  
 **note that the filename is randomized.**
 
-if you don't want to compile the C file, you can download the program compiled [here](https://github.com/eightynine77/C-image-paste/releases/tag/V1.0.0)
+if you don't want to compile the C++ file, you can download the program compiled [here](https://github.com/eightynine77/C-image-paste/releases/latest)
 
 ### note
 if you prefer to see your image manually then you can open your image in windows' temp folder.  
@@ -28,4 +28,4 @@ there are two settings you can use:
 _note: if any or both of these syntax are typed incorrectly, the program will throw error(s) pointing to the syntax_
 
 # _warning_
-when you want to make changes to the c++ file and compile it, it's HIGHLY RECOMMENDED to use microsoft's C/C++ compiler as it is not guaranteed to work with GCC or any other C compiler
+when you want to make changes to the c++ file and compile it, it's HIGHLY RECOMMENDED to use microsoft's C/C++ compiler as it is not guaranteed to work with GCC or any other C++ compiler
