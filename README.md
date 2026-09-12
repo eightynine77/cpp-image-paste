@@ -16,8 +16,9 @@ or you can simply enter ```%temp%``` on file explorer address bar to open the fo
 <img width="752" height="223" alt="image" src="https://github.com/user-attachments/assets/36058deb-83d7-4891-ac76-b8a894cecdb6" />  
 _sort the folder by "date created" (or "date modified" if the option doesn't exist) and you will see your pasted image_
 
-## settings file
-with the addition of the settings file, you can customize how imgpaste behave. the settings file allows you to use different image viewer and image output path.
+## settings file & how to use it
+with the addition of the settings file, you can customize how imgpaste behave. the settings file allows you to use different image viewer and image output path. to create a settings imgpaste file, you can create a file with your preferred name that ends with `.img.config` file extension. for example: `my_settings.img.config`, `settings.img.config`, `paste_settings.img.config`
+
 there are two settings you can use:
 - ```ImageViewerDirectory=```
   this is how you use it: ```ImageViewerDirectory=C:\Program Files\your image viewer\image_viewer.exe```. this setting will allow you to use another image viewer to view the image.
