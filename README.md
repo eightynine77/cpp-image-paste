@@ -28,4 +28,4 @@ there are two settings you can use:
 _note: if any or both of these syntax are typed incorrectly, the program will throw error(s) pointing to the syntax_
 
 # _warning_
-it is HIGHLY RECOMMENDED to use microsoft's C/C++ compiler as it is not guaranteed to work with GCC or any other C compiler
+when you want to make changes to the c++ file and compile it, it's HIGHLY RECOMMENDED to use microsoft's C/C++ compiler as it is not guaranteed to work with GCC or any other C compiler
