@@ -1,6 +1,9 @@
 # C++ image paste
 useful and simple C++ program to paste image from clipboard into a file.
 
+# download
+you can download the program [here](https://github.com/eightynine77/C-image-paste/releases/latest)
+
 # how to use
 simply run cpp-image-paste.exe on cmd and it will paste your image to the %temp% folder.  
 the program will output the exact directory of the pasted image.  
