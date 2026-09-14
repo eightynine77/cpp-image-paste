@@ -52,15 +52,61 @@ static void load_settings(AppSettings* settings) {
     settings->imageViewerDirectory[0] = '\0';
     settings->openImage = false;
 
-    // Look for any file ending in .img.config in the current directory
+    // Get the directory containing this executable.
+    char exePath[MAX_PATH];
+    DWORD exePathLen = GetModuleFileNameA(NULL, exePath, MAX_PATH);
+
+    if (exePathLen == 0 || exePathLen >= MAX_PATH) {
+        return; // Could not determine executable path
+    }
+
+    // Remove the executable filename, leaving only its directory.
+    char* lastSlash = strrchr(exePath, '\\');
+    if (!lastSlash) {
+        return;
+    }
+
+    *(lastSlash + 1) = '\0';
+
+    // Look for any file ending in .img.config in the executable's directory.
+    //
+    // Important: the filename remains completely irrelevant.
+    // Any file matching *.img.config will be accepted, just like before.
+    char searchPath[MAX_PATH];
+    int written = snprintf(
+        searchPath,
+        sizeof(searchPath),
+        "%s*.img.config",
+        exePath
+    );
+
+    if (written < 0 || written >= (int)sizeof(searchPath)) {
+        return;
+    }
+
     WIN32_FIND_DATAA findData;
-    HANDLE hFind = FindFirstFileA("*.img.config", &findData);
+    HANDLE hFind = FindFirstFileA(searchPath, &findData);
     if (hFind == INVALID_HANDLE_VALUE) {
         return; // No config file found, stick to defaults
     }
 
-    FILE* f = fopen(findData.cFileName, "r");
+    // Build the full path to the config file.
+    char configPath[MAX_PATH];
+    written = snprintf(
+        configPath,
+        sizeof(configPath),
+        "%s%s",
+        exePath,
+        findData.cFileName
+    );
+
     FindClose(hFind);
+
+    if (written < 0 || written >= (int)sizeof(configPath)) {
+        return;
+    }
+
+    FILE* f = fopen(configPath, "r");
     if (!f) return;
 
     char line[1024];
@@ -72,11 +118,13 @@ static void load_settings(AppSettings* settings) {
             char* val = line + 27;
             trim_quotes_and_whitespace(val);
             strncpy(settings->customOutputDirectory, val, MAX_PATH - 1);
+            settings->customOutputDirectory[MAX_PATH - 1] = '\0';
         }
         else if (strncmp(line, "ImageViewerDirectory=", 21) == 0) {
             char* val = line + 21;
             trim_quotes_and_whitespace(val);
             strncpy(settings->imageViewerDirectory, val, MAX_PATH - 1);
+            settings->imageViewerDirectory[MAX_PATH - 1] = '\0';
             settings->openImage = true; // Flag that we want to open it
         }
     }
